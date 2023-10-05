@@ -1,6 +1,6 @@
 schemaVersion: 3
 meta:
-  sourceVersionId: eaffaad8-bb88-40f6-a81b-39c9a2a61978 # DO NOT CHANGE - Hex uses this to match up project versions when reimporting the file
+  sourceVersionId: 55118831-7adc-45dc-aeda-b3e484c6d5f6 # DO NOT CHANGE - Hex uses this to match up project versions when reimporting the file
   description: ""
   projectId: 868cb381-37ad-4d66-a540-9560e578f6c1 # DO NOT CHANGE - Unique ID of the project from which this file was generated
   title: Untitled project
@@ -19,7 +19,8 @@ projectAssets:
 sharedAssets:
   secrets: []
   vcsPackages: []
-  dataConnections: []
+  dataConnections:
+    - dataConnectionId: 07f769dc-d1f9-44f1-9058-7e3a2e790a4c # [Demo] Hex Public Data (snowflake)
   externalFileIntegrations: []
 cells:
   - cellType: CODE
@@ -31,7 +32,137 @@ cells:
     cellId: e62a24de-ea21-4fb2-926f-42cba166be48 # DO NOT CHANGE - Hex uses this to match up cells when reimporting the file, and detect any changes to existing cells
     cellLabel: null
     config:
+      source: print('hi')
+  - cellType: CODE
+    cellId: e6d68d48-331a-49c1-8c54-3c1620b6dd4f # DO NOT CHANGE - Hex uses this to match up cells when reimporting the file, and detect any changes to existing cells
+    cellLabel: null
+    config:
       source: ""
+  - cellType: BLOCK
+    cellId: 583dd5d7-db80-407e-9bf6-0786dff8372c # DO NOT CHANGE - Hex uses this to match up cells when reimporting the file, and detect any changes to existing cells
+    cellLabel: null
+    config:
+      blockConfig:
+        sqlCellId: da3482f5-b950-4d5d-af62-f2cb067a6955
+        chartCellId: 45a9a3da-d008-4608-bce6-1c06bcac509a
+        activeTab: preview
+      cells:
+        - cellType: SQL
+          cellId: da3482f5-b950-4d5d-af62-f2cb067a6955
+          cellLabel: null
+          config:
+            source: select * from "DEMO_DATA"."DEMOS"."AMAZON_REVIEWS" limit 100
+            dataFrameCell: false
+            dataConnectionId: 07f769dc-d1f9-44f1-9058-7e3a2e790a4c
+            resultVariableName: dataframe_2
+            useRichDisplay: false
+            sqlCellOutputType: PANDAS
+            useQueryMode: false
+            castDecimals: true
+            useNativeDates: true
+            outputFilteredResult: true
+            allowDuplicateColumns: false
+            tableDisplayConfig:
+              pageSize: 50
+              height: null
+              hideIcons: false
+              hideIndex: false
+              defaultSortColumn: null
+              defaultSortIndexColumn: null
+              defaultSortDirection: ASC
+              conditionalFormatting: null
+              filters: null
+              columnProperties:
+                - originalName: FoundHelpful
+                  renameTo: null
+                  size: 128
+                  wrapText: null
+                  displayFormat: null
+                - originalName: ProductId
+                  renameTo: null
+                  size: 110
+                  wrapText: null
+                  displayFormat: null
+                - originalName: REVIEWS
+                  renameTo: null
+                  size: 400
+                  wrapText: null
+                  displayFormat: null
+                - originalName: Score
+                  renameTo: null
+                  size: 85
+                  wrapText: null
+                  displayFormat: null
+                - originalName: Summary
+                  renameTo: null
+                  size: 229
+                  wrapText: null
+                  displayFormat: null
+                - originalName: TOKEN_COUNT
+                  renameTo: null
+                  size: 138
+                  wrapText: null
+                  displayFormat: null
+                - originalName: UserId
+                  renameTo: null
+                  size: 145
+                  wrapText: null
+                  displayFormat: null
+              columnOrdering: null
+              pinnedColumns: null
+              hiddenColumns: null
+        - cellType: CHARTV2
+          cellId: 45a9a3da-d008-4608-bce6-1c06bcac509a
+          cellLabel: null
+          config:
+            height: null
+            chartSpec:
+              type: layered
+              layers:
+                - id: f3afd38d-db99-4442-ac2f-a9bb318b8eca
+                  xAxis:
+                    type: string
+                    style:
+                      grid:
+                        style: solid
+                      ticks: {}
+                      labels: {}
+                    dataFrameColumn: ProductId
+                  series:
+                    - id: d74c0a78-f96d-416a-9f99-911b18936314
+                      type: bar
+                      axis:
+                        type: number
+                        style:
+                          grid:
+                            style: solid
+                          ticks: {}
+                          labels: {}
+                        aggregate: sum
+                      dataFrameColumns:
+                        - Score
+                      colorOrder: ascending
+                      color:
+                        type: static
+                      opacity:
+                        type: static
+                        value: 1
+                      tooltip:
+                        type: auto
+                      barWidth: 1
+                      orientation: vertical
+                      layout: grouped
+                  dataFrame: dataframe_2
+              settings:
+                legend:
+                  position: right
+                tooltip: true
+                selectionEnabled: false
+            chartSelection: {}
+            colorMappings: {}
+            resultVariable: filter_result
+            outputResult: false
+            displayTableConfig: null
 appLayout:
   visibleMetadataFields:
     - NAME
