@@ -1,6 +1,6 @@
 schemaVersion: 3
 meta:
-  sourceVersionId: cf4c6ed1-a320-429b-b527-68e15eea3e64 # DO NOT CHANGE - Hex uses this to match up project versions when reimporting the file
+  sourceVersionId: c1cfad9f-14b9-41f3-897c-d8b5ff46b63e # DO NOT CHANGE - Hex uses this to match up project versions when reimporting the file
   description: ""
   projectId: 88747c8a-9e9c-4870-8417-71477b72c5cb # DO NOT CHANGE - Unique ID of the project from which this file was generated
   title: Untitled project
@@ -103,26 +103,162 @@ cells:
                   italic: true
             - text: .
               italic: true
-  - cellType: SQL
-    cellId: 899dfb70-7489-4b1a-a3b7-47d3b1fb0358 # DO NOT CHANGE - Hex uses this to match up cells when reimporting the file, and detect any changes to existing cells
-    cellLabel: Query result
+  - cellType: BLOCK
+    cellId: ed385f2a-c29a-4ec8-9138-52c521dc1bbb # DO NOT CHANGE - Hex uses this to match up cells when reimporting the file, and detect any changes to existing cells
+    cellLabel: null
     config:
-      source: |-
-        -- Query any database, csv or dataframe.
+      blockConfig:
+        sqlCellId: 899dfb70-7489-4b1a-a3b7-47d3b1fb0358
+        chartCellId: bd8babdb-12cd-4ebb-bd36-f0b1479e262d
+        activeTab: display
+      cells:
+        - cellType: SQL
+          cellId: 899dfb70-7489-4b1a-a3b7-47d3b1fb0358
+          cellLabel: Query result
+          config:
+            source: |-
+              -- Query any database, csv or dataframe.
 
-        select *
-        from prod.order_details
-      dataFrameCell: false
-      dataConnectionId: b00d73ab-98c9-4494-8d14-c091bc3ce638
-      resultVariableName: query_result
-      useRichDisplay: false
-      sqlCellOutputType: PANDAS
-      useQueryMode: false
-      castDecimals: true
-      useNativeDates: true
-      outputFilteredResult: true
-      allowDuplicateColumns: false
-      tableDisplayConfig: null
+              select *
+              from prod.order_details
+            dataFrameCell: false
+            dataConnectionId: b00d73ab-98c9-4494-8d14-c091bc3ce638
+            resultVariableName: query_result
+            useRichDisplay: true
+            sqlCellOutputType: PANDAS
+            useQueryMode: false
+            castDecimals: true
+            useNativeDates: true
+            outputFilteredResult: true
+            allowDuplicateColumns: false
+            tableDisplayConfig:
+              pageSize: 50
+              height: null
+              hideIcons: false
+              hideIndex: false
+              defaultSortColumn: null
+              defaultSortIndexColumn: null
+              defaultSortDirection: ASC
+              conditionalFormatting: null
+              calcs: null
+              filters: null
+              columnProperties:
+                - originalName: CATEGORY
+                  renameTo: null
+                  size: 114
+                  wrapText: null
+                  displayFormat: null
+                - originalName: CUSTOMER_ID
+                  renameTo: null
+                  size: 137
+                  wrapText: null
+                  displayFormat: null
+                - originalName: IS_ALLERGEN_FREE
+                  renameTo: null
+                  size: 166
+                  wrapText: null
+                  displayFormat: null
+                - originalName: IS_SPICY
+                  renameTo: null
+                  size: 106
+                  wrapText: null
+                  displayFormat: null
+                - originalName: MENU_ITEM
+                  renameTo: null
+                  size: 163
+                  wrapText: null
+                  displayFormat: null
+                - originalName: MENU_ITEM_ID
+                  renameTo: null
+                  size: 143
+                  wrapText: null
+                  displayFormat: null
+                - originalName: ORDERED_AT
+                  renameTo: null
+                  size: 196
+                  wrapText: null
+                  displayFormat: null
+                - originalName: ORDER_DATE
+                  renameTo: null
+                  size: 129
+                  wrapText: null
+                  displayFormat: null
+                - originalName: ORDER_ID
+                  renameTo: null
+                  size: 113
+                  wrapText: null
+                  displayFormat: null
+                - originalName: ORDER_ITEM_ID
+                  renameTo: null
+                  size: 149
+                  wrapText: null
+                  displayFormat: null
+                - originalName: ORDER_STATUS
+                  renameTo: null
+                  size: 142
+                  wrapText: null
+                  displayFormat: null
+                - originalName: PRICE
+                  renameTo: null
+                  size: 89
+                  wrapText: null
+                  displayFormat: null
+              columnOrdering: null
+              pinnedColumns: null
+              hiddenColumns: null
+              pinIndexColumns: false
+        - cellType: CHARTV2
+          cellId: bd8babdb-12cd-4ebb-bd36-f0b1479e262d
+          cellLabel: null
+          config:
+            height: null
+            chartSpec:
+              type: layered
+              layers:
+                - id: 13a3a02d-97a0-4350-8c64-04d8eb14d95a
+                  xAxis:
+                    type: string
+                    style:
+                      grid:
+                        style: solid
+                      ticks: {}
+                      labels: {}
+                    dataFrameColumn: ORDER_STATUS
+                  series:
+                    - id: 4bc67cc1-9bc5-4853-97a0-b578d710b9d6
+                      type: bar
+                      axis:
+                        type: number
+                        style:
+                          grid:
+                            style: solid
+                          ticks: {}
+                          labels: {}
+                        aggregate: sum
+                      dataFrameColumns:
+                        - PRICE
+                      colorOrder: ascending
+                      color:
+                        type: static
+                      opacity:
+                        type: static
+                        value: 1
+                      tooltip:
+                        type: auto
+                      barWidth: 1
+                      orientation: vertical
+                      layout: stacked
+                  dataFrame: query_result
+              settings:
+                legend:
+                  position: right
+                tooltip: true
+                selectionEnabled: false
+            chartSelection: {}
+            colorMappings: {}
+            resultVariable: filter_result
+            outputResult: false
+            displayTableConfig: null
   - cellType: TEXT
     cellId: 41866a7f-92ee-40a0-84b1-5f9d9cd9f415 # DO NOT CHANGE - Hex uses this to match up cells when reimporting the file, and detect any changes to existing cells
     cellLabel: null
@@ -257,6 +393,22 @@ cells:
                 - type: lic
                   children:
                     - text: "Takeaway #3"
+  - cellType: SQL
+    cellId: 373a6a3a-a7d0-4f8c-aecd-b3f2496164cd # DO NOT CHANGE - Hex uses this to match up cells when reimporting the file, and detect any changes to existing cells
+    cellLabel: null
+    config:
+      source: ""
+      dataFrameCell: false
+      dataConnectionId: b00d73ab-98c9-4494-8d14-c091bc3ce638
+      resultVariableName: dataframe
+      useRichDisplay: false
+      sqlCellOutputType: PANDAS
+      useQueryMode: false
+      castDecimals: true
+      useNativeDates: true
+      outputFilteredResult: true
+      allowDuplicateColumns: false
+      tableDisplayConfig: null
 appLayout:
   visibleMetadataFields:
     - NAME
@@ -312,6 +464,17 @@ appLayout:
                   hideOutput: false
                   type: CELL
                   cellId: b476639b-5ccd-450d-9d78-e80faee1dd8d
+                  sharedFilterId: null
+                  height: null
+                  showLabel: true
+        - columns:
+            - start: 0
+              end: 120
+              elements:
+                - showSource: false
+                  hideOutput: false
+                  type: CELL
+                  cellId: 899dfb70-7489-4b1a-a3b7-47d3b1fb0358
                   sharedFilterId: null
                   height: null
                   showLabel: true
