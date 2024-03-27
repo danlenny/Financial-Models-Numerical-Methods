@@ -1,0 +1,362 @@
+schemaVersion: 3
+meta:
+  sourceVersionId: cf4c6ed1-a320-429b-b527-68e15eea3e64 # DO NOT CHANGE - Hex uses this to match up project versions when reimporting the file
+  description: ""
+  projectId: 88747c8a-9e9c-4870-8417-71477b72c5cb # DO NOT CHANGE - Unique ID of the project from which this file was generated
+  title: Untitled project
+  timezone: null
+  appTheme: SYS_PREF
+  codeLanguage: PYTHON
+  status: null
+  categories: []
+  castDecimalsDefault: true
+  logicQueryCacheTimeout: null
+  publishedQueryCacheTimeout: null
+  hexType: PROJECT
+projectAssets:
+  dataConnections: []
+  envVars: []
+  secrets: []
+sharedAssets:
+  secrets: []
+  vcsPackages: []
+  dataConnections:
+    - dataConnectionId: b00d73ab-98c9-4494-8d14-c091bc3ce638 # [Demo] Hex Public Data (snowflake)
+  externalFileIntegrations: []
+cells:
+  - cellType: TEXT
+    cellId: 8f06ba15-5070-4456-82e2-53921831642b # DO NOT CHANGE - Hex uses this to match up cells when reimporting the file, and detect any changes to existing cells
+    cellLabel: null
+    config:
+      richText:
+        - type: h3
+          children:
+            - text: Key Questions
+  - cellType: TEXT
+    cellId: 8e5fdd5f-ac39-43cc-a460-2af23b96dcd3 # DO NOT CHANGE - Hex uses this to match up cells when reimporting the file, and detect any changes to existing cells
+    cellLabel: null
+    config:
+      richText:
+        - type: p
+          children:
+            - text: "Outline some context and list your data questions. "
+              italic: true
+        - type: ol
+          children:
+            - type: li
+              children:
+                - type: lic
+                  children:
+                    - text: What is the most commonly cancelled item?
+            - type: li
+              children:
+                - type: lic
+                  children:
+                    - text: "Question #2"
+            - type: li
+              children:
+                - type: lic
+                  children:
+                    - text: "Question #3"
+  - cellType: TEXT
+    cellId: 6276636a-1b02-4711-8a94-f6fef0fd8fa2 # DO NOT CHANGE - Hex uses this to match up cells when reimporting the file, and detect any changes to existing cells
+    cellLabel: null
+    config:
+      richText:
+        - type: h3
+          children:
+            - text: Gathering Data
+  - cellType: TEXT
+    cellId: b476639b-5ccd-450d-9d78-e80faee1dd8d # DO NOT CHANGE - Hex uses this to match up cells when reimporting the file, and detect any changes to existing cells
+    cellLabel: null
+    config:
+      richText:
+        - type: paragraph
+          children:
+            - text: "Gather data from any source: "
+              italic: true
+            - url: https://learn.hex.tech/docs/logic-cell-types/sql-cells/overview#data-connection-sql
+              type: a
+              children:
+                - text: query a database
+                  italic: true
+            - text: ", "
+              italic: true
+            - url: https://learn.hex.tech/docs/environment-configuration/files#upload-files
+              type: a
+              children:
+                - text: upload a csv
+                  italic: true
+            - text: ", "
+              italic: true
+            - url: https://learn.hex.tech/tutorials/connect-to-data/connect-to-google-sheets
+              type: a
+              children:
+                - text: connect Google Sheets
+                  italic: true
+            - text: ", and "
+              italic: true
+            - url: https://learn.hex.tech/docs/connect-to-data/data-connections/overview
+              type: a
+              children:
+                - text: more
+                  italic: true
+            - text: .
+              italic: true
+  - cellType: SQL
+    cellId: 899dfb70-7489-4b1a-a3b7-47d3b1fb0358 # DO NOT CHANGE - Hex uses this to match up cells when reimporting the file, and detect any changes to existing cells
+    cellLabel: Query result
+    config:
+      source: |-
+        -- Query any database, csv or dataframe.
+
+        select *
+        from prod.order_details
+      dataFrameCell: false
+      dataConnectionId: b00d73ab-98c9-4494-8d14-c091bc3ce638
+      resultVariableName: query_result
+      useRichDisplay: false
+      sqlCellOutputType: PANDAS
+      useQueryMode: false
+      castDecimals: true
+      useNativeDates: true
+      outputFilteredResult: true
+      allowDuplicateColumns: false
+      tableDisplayConfig: null
+  - cellType: TEXT
+    cellId: 41866a7f-92ee-40a0-84b1-5f9d9cd9f415 # DO NOT CHANGE - Hex uses this to match up cells when reimporting the file, and detect any changes to existing cells
+    cellLabel: null
+    config:
+      richText:
+        - type: h3
+          children:
+            - text: Analyzing and visualizing the data
+  - cellType: CODE
+    cellId: 1f3567db-47e1-4dfb-9602-64531e685d2b # DO NOT CHANGE - Hex uses this to match up cells when reimporting the file, and detect any changes to existing cells
+    cellLabel: null
+    config:
+      source: |-
+        # analyze outputs from your SQL query with python
+
+        most_common_cancelled_item = query_result[query_result["ORDER_STATUS"] == "cancelled"][
+            "MENU_ITEM"
+        ].value_counts().idxmax()
+  - cellType: CHARTV2
+    cellId: dfe66c9e-a539-4d02-82c2-86a0542cf828 # DO NOT CHANGE - Hex uses this to match up cells when reimporting the file, and detect any changes to existing cells
+    cellLabel: Annual Sales by Order Status
+    config:
+      height: null
+      chartSpec:
+        type: layered
+        layers:
+          - id: 6ae1a0a5-6409-438f-8b6e-93891f7979cc
+            xAxis:
+              type: datetime
+              style:
+                grid:
+                  style: solid
+                ticks: {}
+                labels: {}
+              title: Order Date (Year)
+              timeUnit: year
+              dataFrameColumn: ORDER_DATE
+            series:
+              - id: c83f7f3b-52f4-4b84-89cd-21229511e5b3
+                type: bar
+                axis:
+                  type: number
+                  style:
+                    grid:
+                      style: solid
+                    ticks: {}
+                    labels: {}
+                  title: Total Sales ($USD)
+                  aggregate: sum
+                dataFrameColumns:
+                  - PRICE
+                colorDataFrameColumn: ORDER_STATUS
+                colorOrder: ascending
+                color:
+                  type: series
+                  colorsBySeriesValues: {}
+                opacity:
+                  type: static
+                  value: 1
+                tooltip:
+                  type: auto
+                barWidth: 1
+                orientation: vertical
+                layout: grouped
+            dataFrame: query_result
+        settings:
+          legend:
+            position: right
+          tooltip: true
+          selectionEnabled: false
+      chartSelection: {}
+      colorMappings:
+        "true": "#b28fc9"
+        "false": "#3e277a"
+        cancelled: "#4C78A8"
+        completed: "#F58518"
+      resultVariable: filter_result
+      outputResult: true
+      displayTableConfig:
+        pageSize: 50
+        height: null
+        hideIcons: false
+        hideIndex: false
+        defaultSortColumn: null
+        defaultSortIndexColumn: null
+        defaultSortDirection: ASC
+        conditionalFormatting: null
+        calcs: null
+        filters: []
+        columnProperties: []
+        columnOrdering: null
+        pinnedColumns: []
+        hiddenColumns: []
+        pinIndexColumns: false
+  - cellType: TEXT
+    cellId: c986d1f7-7870-4882-976a-05f046b67135 # DO NOT CHANGE - Hex uses this to match up cells when reimporting the file, and detect any changes to existing cells
+    cellLabel: null
+    config:
+      richText:
+        - type: h3
+          children:
+            - text: Takeaways
+  - cellType: TEXT
+    cellId: 2a4cb285-6796-47a4-9fcb-0f0ff6f8e687 # DO NOT CHANGE - Hex uses this to match up cells when reimporting the file, and detect any changes to existing cells
+    cellLabel: null
+    config:
+      richText:
+        - type: paragraph
+          children:
+            - text: "Summarize your top takeaways from your analysis. "
+              italic: true
+        - type: ul
+          children:
+            - type: li
+              children:
+                - type: lic
+                  children:
+                    - text: "The most commonly cancelled item is "
+                    - id: d71b9022
+                      type: hex_reference
+                      value: "{{ most_common_cancelled_item }}"
+                      children:
+                        - text: ""
+                    - text: ""
+            - type: li
+              children:
+                - type: lic
+                  children:
+                    - text: "Takeaway #2"
+            - type: li
+              children:
+                - type: lic
+                  children:
+                    - text: "Takeaway #3"
+appLayout:
+  visibleMetadataFields:
+    - NAME
+    - DESCRIPTION
+    - AUTHOR
+    - LAST_EDITED
+    - LAST_RUN
+    - CATEGORIES
+    - STATUS
+    - TABLE_OF_CONTENTS
+  fullWidth: false
+  tabs:
+    - name: Tab 1
+      rows:
+        - columns:
+            - start: 0
+              end: 120
+              elements:
+                - showSource: false
+                  hideOutput: false
+                  type: CELL
+                  cellId: 8f06ba15-5070-4456-82e2-53921831642b
+                  sharedFilterId: null
+                  height: null
+                  showLabel: true
+        - columns:
+            - start: 0
+              end: 120
+              elements:
+                - showSource: false
+                  hideOutput: false
+                  type: CELL
+                  cellId: 8e5fdd5f-ac39-43cc-a460-2af23b96dcd3
+                  sharedFilterId: null
+                  height: null
+                  showLabel: true
+        - columns:
+            - start: 0
+              end: 120
+              elements:
+                - showSource: false
+                  hideOutput: false
+                  type: CELL
+                  cellId: 6276636a-1b02-4711-8a94-f6fef0fd8fa2
+                  sharedFilterId: null
+                  height: null
+                  showLabel: true
+        - columns:
+            - start: 0
+              end: 120
+              elements:
+                - showSource: false
+                  hideOutput: false
+                  type: CELL
+                  cellId: b476639b-5ccd-450d-9d78-e80faee1dd8d
+                  sharedFilterId: null
+                  height: null
+                  showLabel: true
+        - columns:
+            - start: 0
+              end: 120
+              elements:
+                - showSource: false
+                  hideOutput: false
+                  type: CELL
+                  cellId: 41866a7f-92ee-40a0-84b1-5f9d9cd9f415
+                  sharedFilterId: null
+                  height: null
+                  showLabel: true
+        - columns:
+            - start: 0
+              end: 120
+              elements:
+                - showSource: false
+                  hideOutput: false
+                  type: CELL
+                  cellId: dfe66c9e-a539-4d02-82c2-86a0542cf828
+                  sharedFilterId: null
+                  height: null
+                  showLabel: true
+        - columns:
+            - start: 0
+              end: 120
+              elements:
+                - showSource: false
+                  hideOutput: false
+                  type: CELL
+                  cellId: c986d1f7-7870-4882-976a-05f046b67135
+                  sharedFilterId: null
+                  height: null
+                  showLabel: true
+        - columns:
+            - start: 0
+              end: 120
+              elements:
+                - showSource: false
+                  hideOutput: false
+                  type: CELL
+                  cellId: 2a4cb285-6796-47a4-9fcb-0f0ff6f8e687
+                  sharedFilterId: null
+                  height: null
+                  showLabel: true
+sharedFilters: []
